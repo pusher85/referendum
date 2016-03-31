@@ -1,0 +1,34 @@
+<div class="navbar-content">
+	<!-- start: SIDEBAR -->
+	<div class="main-navigation navbar-collapse collapse">
+		<!-- start: MAIN MENU TOGGLER BUTTON -->
+		<div class="navigation-toggler">
+			<i class="clip-chevron-left"></i>
+			<i class="clip-chevron-right"></i>
+		</div>
+		<!-- end: MAIN MENU TOGGLER BUTTON -->
+		<!-- start: MAIN NAVIGATION MENU -->
+		<ul class="main-navigation-menu">
+			<li class="<%# if current_page?(:controller => '/welcome', :action => 'index') %> <%#= "active open" %> <%# end %>" >
+				<%= link_to '<i class="clip-home-3"></i><span class="title"> Stato Rilevazioni</span>'.html_safe, seggis_path %>
+			</li>
+
+			
+
+			<%# if utenti_signed_in? && (current_utenti.operatore? || current_utenti.admin) %>
+				<li class="<%# if current_page?(:controller => '/welcome', :action => 'assegnati') %> <%#= "active open" %> <%# end %>">
+					<%= link_to '<i class="clip-folder"></i><span class="title"> Vuoto</span>'.html_safe, '#' %>
+				</li>
+			<%# end %>
+
+			<%# if @sono_user %>
+				<li>
+					<%= link_to '<i class="clip-folder"></i><span class="title"> Vuoto</span>'.html_safe, '#' %>
+				</li>
+			<%# end %>
+
+		</ul>
+		<!-- end: MAIN NAVIGATION MENU -->
+	</div>
+	<!-- end: SIDEBAR -->
+</div>

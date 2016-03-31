@@ -1,0 +1,112 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-12 center">
+    <h1>Stato delle rilevazioni per seggio</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table  table-hover" id="dataTables-seggi">
+      <thead>
+        <tr>
+          <th> # </th>
+          <th>Descrizione</th>
+          <th> | </th>
+          <th>Maschi</th>
+          <th>Femmine</th>
+          <th>Iscritti</th>
+          <th> | </th>
+          <th>Prima-M</th>
+          <th>Prima-F</th>
+          <th> % </th>
+          <th> | </th>
+          <th>Seconda-M</th>
+          <th>Seconda-F</th>
+          <th> % </th>
+          <th> | </th>
+          <th>Terza-M</th>
+          <th>Terza-F</th>
+          <th> % </th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @seggis.each do |seggi| %>
+
+          <%
+          @iscritti = seggi.maschi + seggi.femmine
+
+          if seggi.prima
+            @tot_prima = seggi.prima.maschi + seggi.prima.femmine
+            @perc_prima = number_to_percentage(@tot_prima.to_f * 100 / @iscritti.to_f, precision: 2)
+            @ok1 = true
+          else
+            @ok1 = false
+          end
+
+          if seggi.seconda
+            @tot_seconda = seggi.seconda.maschi + seggi.seconda.femmine
+            @perc_seconda = number_to_percentage(@tot_seconda.to_f * 100 / @iscritti.to_f, precision: 2)
+            @ok2 = true
+          else
+            @ok2 = false
+          end
+
+
+          if seggi.terza
+            @tot_terza = seggi.terza.maschi + seggi.terza.femmine
+            @perc_terza = number_to_percentage(@tot_terza.to_f * 100 / @iscritti.to_f, precision: 2)
+            @ok3 = true
+          else
+            @ok3 = false
+          end
+          %>
+
+          <tr>
+            <td><%= seggi.numero %></td>
+            <td><%= seggi.descrizione %></td>
+            <td> | </td>
+
+            <td><%= seggi.maschi %></td>
+            <td><%= seggi.femmine %></td>
+            <td><%= @iscritti %></td>
+            <td> | </td>
+            <!------------------------------- -->
+
+            <td><%= seggi.prima ? seggi.prima.maschi : (link_to 'inserisci'.html_safe, '#') %></td>
+            <td><%= seggi.prima.femmine if seggi.prima %></td>
+            <td> <%= @perc_prima if seggi.prima %></td>
+            <td> | </td>
+
+            <td><%= seggi.seconda ? seggi.seconda.maschi : ((link_to 'inserisci'.html_safe, '#') if @ok1)  %></td>
+            <td><%= seggi.seconda.femmine if seggi.seconda %></td>
+            <td> <%= @perc_seconda if seggi.seconda %></td>
+            <td> | </td>
+
+            <td><%= seggi.terza ? seggi.terza.maschi : ((link_to 'inserisci'.html_safe, '#') if @ok2) %></td>
+            <td><%= seggi.terza.femmine if seggi.terza %></td>
+            <td> <%= @perc_terza if seggi.terza %></td>
+            <td> | </td>
+
+            <td><%= link_to 'Apri Seggio', seggi %></td>
+            <!-- <td><%= link_to 'Edit Seggio', edit_seggi_path(seggi) %></td> -->
+            <!-- <td><%= link_to 'Destroy', seggi, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+<br>
+
+<%= link_to 'New Seggi', new_seggi_path %>
+
+<%= debug(params) %>

@@ -1,0 +1,137 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+	<div class="col-md 12 center">
+		<h3>Dettagli sezione N. <%= @seggi.numero %> - <%= @seggi.descrizione %></h3>
+	</div>
+</div>
+
+<div class="row space12">
+	<ul class="mini-stats col-sm-12">
+		<li class="col-sm-4 col-xs-4">
+			<div class="values">
+				<i class="clip-user-4 circle-icon circle-green"></i>
+				<strong><span data-original-title="Dati Seggio" data-content="Iscritti" data-placement="bottom" data-trigger="hover" class="popovers"><%= @iscritti %></strong>
+			</div>
+		</li>
+		<li class="col-sm-4 col-xs-4">
+			<div class="values">
+				<i class="clip-settings circle-icon circle-bricky"></i>
+				<strong><span data-original-title="Ultima Rilevazione" data-content="Votanti" data-placement="bottom" data-trigger="hover" class="popovers"><%= @votanti_tot %></span></strong>
+			</div>
+		</li>
+		<li class="col-sm-4 col-xs-4">
+			<div class="values">
+				<i class="clip-target circle-icon circle-teal"></i>
+				<strong><span data-original-title="Ultima Rilevazione" data-content="Percentuale Votanti" data-placement="bottom" data-trigger="hover" class="popovers"><%= number_to_percentage(@percentuale_tot, precision: 2 )%></span></strong>
+				
+			</div>
+		</li>
+	</ul>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="well well-sm">
+			<div class="row center">
+				<div class="col-md-12"><h4>Prima Rilevazione</h4></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<% if @seggi.prima %>
+					<dl class="dl-horizontal">
+						<dt><strong>Maschi: </strong></dt>
+						<dd><%= @seggi.prima.maschi if @seggi.prima %></dd>
+						<dt><strong>Femmine: </strong></dt>
+						<dd><%= @seggi.prima.femmine if @seggi.prima %></dd>
+						<dt><strong>Totali: </strong></dt>
+						<dd><%= @votanti1 %></dd>
+						<dt><strong>Percentuale: </strong></dt>
+						<dd><strong><%= number_to_percentage(@perc1, precision: 2 ) %></strong></dd>
+					</dl>
+					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_prima_path(:seggi_id => @seggi.id, :id => @seggi.prima.id), class: 'btn btn-blue btn-block' %>
+					<% else %>
+						<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_prima_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+	
+
+	<div class="col-md-4">
+		<div class="well well-sm">
+			<div class="row center">
+				<div class="col-md-12"><h4>Seconda Rilevazione</h4></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<% if @seggi.seconda %>
+					<dl class="dl-horizontal">
+						<dt><strong>Maschi: </strong></dt>
+						<dd><%= @seggi.seconda.maschi if @seggi.seconda %></dd>
+						<dt><strong>Femmine: </strong></dt>
+						<dd><%= @seggi.seconda.femmine if @seggi.seconda %></dd>
+						<dt><strong>Totali: </strong></dt>
+						<dd><%= @votanti2 %></dd>
+						<dt><strong>Percentuale: </strong></dt>
+						<dd><strong><%= @perc2 %></strong></dd>
+					</dl>
+					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_seconda_path(:seggi_id => @seggi.id, :id => @seggi.seconda.id), class: 'btn btn-blue btn-block' %>
+					<% else 
+							if @seggi.prima %>
+								<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_seconda_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
+								<% else %>
+								<p class="center">Precedente rilevazione mancante</p>
+								<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="well well-sm">
+			<div class="row center">
+				<div class="col-md-12"><h4>Terza Rilevazione</h4></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<% if @seggi.terza %>
+					<dl class="dl-horizontal">
+						<dt><strong>Maschi: </strong></dt>
+						<dd><%= @seggi.terza.maschi if @seggi.terza %></dd>
+						<dt><strong>Femmine: </strong></dt>
+						<dd><%= @seggi.terza.femmine if @seggi.terza %></dd>
+						<dt><strong>Totali: </strong></dt>
+						<dd><%= @votanti3 %></dd>
+						<dt><strong>Percentuale: </strong></dt>
+						<dd><strong><%= @perc3 %></strong></dd>
+					</dl>
+					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_terza_path(:seggi_id => @seggi.id, :id => @seggi.terza.id), class: 'btn btn-blue btn-block' %>
+					<% else
+							if @seggi.prima %>
+								<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_terza_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
+								<% else %>
+								<p class="center">Precedente rilevazione mancante</p>
+								<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_seggi_path(@seggi) %> |
+<%= link_to 'Back', seggis_path %>
+<%= debug(params) %>

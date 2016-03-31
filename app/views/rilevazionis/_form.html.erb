@@ -1,0 +1,46 @@
+<%#= form_for(@rilevazioni) do |f| %>
+<%= form_for :rilevazioni, url: url, method: method do |f| %>
+  <% if @rilevazioni.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rilevazioni.errors.count, "error") %> prohibited this rilevazioni from being saved:</h2>
+
+      <ul>
+      <% @rilevazioni.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%#= f.label :seggi_id %><br>
+    <%#= f.text_field :seggi_id %>
+  </div>
+  <div class="field">
+    <%= f.label :uno_m %><br>
+    <%= f.number_field :uno_m %>
+  </div>
+  <div class="field">
+    <%= f.label :uno_f %><br>
+    <%= f.number_field :uno_f %>
+  </div>
+  <div class="field">
+    <%= f.label :due_m %><br>
+    <%= f.number_field :due_m %>
+  </div>
+  <div class="field">
+    <%= f.label :due_f %><br>
+    <%= f.number_field :due_f %>
+  </div>
+  <div class="field">
+    <%= f.label :tre_m %><br>
+    <%= f.number_field :tre_m %>
+  </div>
+  <div class="field">
+    <%= f.label :tre_f %><br>
+    <%= f.number_field :tre_f %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

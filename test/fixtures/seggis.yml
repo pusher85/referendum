@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  descrizione: MyText
+  numero: 
+  maschi: 
+  femmine: 
+
+two:
+  descrizione: MyText
+  numero: 
+  maschi: 
+  femmine: 

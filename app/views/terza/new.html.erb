@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1>Creazione Terza rilevazione per il seggio <%= @seggio.numero %></h1>
+	</div>
+</div>
+
+<%= render 'form', {url: seggi_terza_index_path, method: 'nessuno'} %>
+
+<%= debug(params) %>

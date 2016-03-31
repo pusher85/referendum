@@ -1,0 +1,28 @@
+default: &default
+   adapter: mysql
+   #pool: 5
+   timeout: 5000
+
+test:
+   <<: *default
+   database: ruby_referendum
+   username: ruby
+   password: password
+   host: 10.0.0.1
+   port: 3306
+
+development:
+   <<: *default
+   database: ruby_referendum
+   username: ruby
+   password: password
+   host: 192.168.1.42
+   port: 3306
+
+production:
+   <<: *default
+   database: ruby_referendum
+   username: ruby
+   password: password
+   host: 192.168.11.42
+   port: 3306

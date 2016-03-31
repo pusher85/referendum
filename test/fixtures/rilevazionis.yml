@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seggi_id: 
+  uno_m: 1
+  uno_f: 1
+  due_m: 1
+  due_f: 1
+  tre_m: 1
+  tre_f: 1
+
+two:
+  seggi_id: 
+  uno_m: 1
+  uno_f: 1
+  due_m: 1
+  due_f: 1
+  tre_m: 1
+  tre_f: 1

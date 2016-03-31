@@ -1,0 +1,40 @@
+<%= form_for :terza, url: url, method: method do |f| %>
+
+  <% if @terza.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@terza.errors.count, "error") %> prohibited this Terza from being saved:</h2>
+
+      <ul>
+      <% @terza.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	<div class="field">
+    <%= f.label :maschi %><br>
+    <%= f.number_field :maschi %>
+    <% if method == 'patch' %>
+    <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @terza.maschi %> </span>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :femmine %><br>
+    <%= f.number_field :femmine %>
+    <% if method == 'patch' %>
+    <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @terza.femmine %> </span>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <p>metodo = <%= method %></p>
+
+
+
+<% end %>

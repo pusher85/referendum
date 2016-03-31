@@ -1,0 +1,39 @@
+<%= form_for :seconda, url: url, method: method do |f| %>
+
+  <% if @seconda.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@seconda.errors.count, "error") %> prohibited this Seconda from being saved:</h2>
+
+      <ul>
+      <% @seconda.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	<div class="field">
+    <%= f.label :maschi %><br>
+    <%= f.number_field :maschi %>
+    <% if method == 'patch' %>
+    <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @seconda.maschi %> </span>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :femmine %><br>
+    <%= f.number_field :femmine %>
+    <% if method == 'patch' %>
+    <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @seconda.femmine %> </span>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+
+
+<% end %>

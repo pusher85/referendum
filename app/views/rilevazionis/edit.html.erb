@@ -1,0 +1,10 @@
+<h1>Editing Rilevazioni</h1>
+
+<%#= render 'form' %>
+<%= render 'form', {url: seggi_rilevazioni_path, method: 'patch'} %>
+
+<%= link_to 'Show', seggi_rilevazioni_path %> |
+<%= link_to 'Back', root_path %>
+
+
+<%= debug(params) %>

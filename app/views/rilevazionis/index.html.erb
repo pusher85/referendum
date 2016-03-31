@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rilevazionis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Seggi</th>
+      <th>Uno m</th>
+      <th>Uno f</th>
+      <th>Due m</th>
+      <th>Due f</th>
+      <th>Tre m</th>
+      <th>Tre f</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rilevazionis.each do |rilevazioni| %>
+      <tr>
+        <td><%= rilevazioni.seggi.numero %></td>
+        <td><%= rilevazioni.uno_m %></td>
+        <td><%= rilevazioni.uno_f %></td>
+        <td><%= rilevazioni.due_m %></td>
+        <td><%= rilevazioni.due_f %></td>
+        <td><%= rilevazioni.tre_m %></td>
+        <td><%= rilevazioni.tre_f %></td>
+        <td><%= link_to 'Show', seggi_rilevazioni_path(:id => rilevazioni.id) %></td>
+        <td><%= link_to 'Edit', edit_seggi_rilevazioni_path(:id => rilevazioni.id) %></td>
+        <td><%= link_to 'Destroy', seggi_rilevazioni_path(:id => rilevazioni.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p>
+seggio = <%= @seggio.id %></p>
+
+<br>
+
+<%= link_to 'New Rilevazioni', new_seggi_rilevazioni_path %>
+
+<%= debug(params) %>
