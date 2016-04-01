@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :prima
     resources :seconda
     resources :terza
+    resources :finale
   end
 
 

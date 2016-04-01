@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331163744) do
+ActiveRecord::Schema.define(version: 20160401162051) do
+
+  create_table "finales", force: :cascade do |t|
+    t.integer  "seggi_id",   limit: 4
+    t.integer  "si",         limit: 4
+    t.integer  "no",         limit: 4
+    t.integer  "bianche",    limit: 4
+    t.integer  "nulle",      limit: 4
+    t.integer  "contestate", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "primas", force: :cascade do |t|
     t.integer  "seggi_id",   limit: 4

@@ -38,6 +38,12 @@ class SeggisController < ApplicationController
     @perc3 = (@votanti3 * 100 / @iscritti.to_f).to_f if @seggi.terza
     @percentuale_tot = (@votanti_tot.to_f * 100 / @iscritti.to_f).to_f
 
+    if @seggi.finale
+      @validi = @seggi.finale.si + @seggi.finale.no
+      @si_perc = ((100 * @seggi.finale.si / @validi.to_f ).to_f).round(2)
+      @no_perc = ((100 * @seggi.finale.no / @validi.to_f ).to_f).round(2)
+    end
+
     #number_to_percentage(@percentuale_tot, precision: 2 )
 
   end

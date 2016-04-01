@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seggi_id: 1
+  si: 1
+  'no': 1
+  bianche: 1
+  nulle: 1
+  contestate: 1
+
+two:
+  seggi_id: 1
+  si: 1
+  'no': 1
+  bianche: 1
+  nulle: 1
+  contestate: 1

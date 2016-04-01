@@ -79,7 +79,7 @@
 						<dt><strong>Totali: </strong></dt>
 						<dd><%= @votanti2 %></dd>
 						<dt><strong>Percentuale: </strong></dt>
-						<dd><strong><%= number_to_percentage(@perc2, precision: 2) %></strong></dd>
+						<dd class="text-danger"><strong><%= number_to_percentage(@perc2, precision: 2) %></strong></dd>
 					</dl>
 					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_seconda_path(:seggi_id => @seggi.id, :id => @seggi.seconda.id), class: 'btn btn-blue btn-block' %>
 					<% else 
@@ -110,11 +110,11 @@
 						<dt><strong>Totali: </strong></dt>
 						<dd><%= @votanti3 %></dd>
 						<dt><strong>Percentuale: </strong></dt>
-						<dd><strong><%= number_to_percentage(@perc3, precision: 2) %></strong></dd>
+						<dd class="text-danger"><strong><%= number_to_percentage(@perc3, precision: 2) %></strong></dd>
 					</dl>
 					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_terza_path(:seggi_id => @seggi.id, :id => @seggi.terza.id), class: 'btn btn-blue btn-block' %>
 					<% else
-							if @seggi.prima %>
+							if @seggi.seconda %>
 								<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_terza_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
 								<% else %>
 								<p class="center">Precedente rilevazione mancante</p>
@@ -125,10 +125,84 @@
 		</div>
 	</div>
 
-
-
 </div>
 
+<div class="row">
+	<div class="col-md-12">
+		<% if @seggi.terza %>
+			<% if !@seggi.finale %>
+				<%= link_to '<i class="fa fa-plus"></i> Crea Scrutino Finale'.html_safe, new_seggi_finale_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
+			<% else %>
+				<div class="well well-sm">
+					<span class=center><h3>Risultati Scrutino Finale</h3></span>
+
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="row space12">
+								<div class="col-sm-6">
+									<div class="easy-pie-chart">
+										<span class="cpu number" data-percent="<%= @si_perc %>"> <span class="percent"><%= @si_perc %></span> </span>
+										<div class="label-chart">
+											SI
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="easy-pie-chart">
+										<span class="bounce number" data-percent="<%= @no_perc %>"> <span class="percent"><%= @no_perc %></span> </span>
+										<div class="label-chart">
+											NO
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-7">
+							<div class="row space12">
+								<ul class="mini-stats col-sm-12">
+									<li class="col-sm-4">
+										<div class="sparkline_bar_good">
+											<span>3,5,9,8,13,11,14</span>+10%
+										</div>
+										<div class="values">
+											<strong>18304</strong>
+											Bianche
+										</div>
+									</li>
+									<li class="col-sm-4">
+										<div class="sparkline_bar_neutral">
+											<span>20,15,18,14,10,12,15,20</span>0%
+										</div>
+										<div class="values">
+											<strong>3833</strong>
+											Nulle
+										</div>
+									</li>
+									<li class="col-sm-4">
+										<div class="sparkline_bar_bad">
+											<span>4,6,10,8,12,21,11</span>+50%
+										</div>
+										<div class="values">
+											<strong>18304</strong>
+											Contestate
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+					<%= link_to '<i class="fa fa-plus"></i> Modifica Scrutino Finale'.html_safe, edit_seggi_finale_path(:seggi_id => @seggi.id, :id => @seggi.finale.id), class: 'btn btn-blue btn-block' %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
 
 
 
