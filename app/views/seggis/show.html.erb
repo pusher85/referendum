@@ -79,7 +79,7 @@
 						<dt><strong>Totali: </strong></dt>
 						<dd><%= @votanti2 %></dd>
 						<dt><strong>Percentuale: </strong></dt>
-						<dd><strong><%= @perc2 %></strong></dd>
+						<dd><strong><%= number_to_percentage(@perc2, precision: 2) %></strong></dd>
 					</dl>
 					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_seconda_path(:seggi_id => @seggi.id, :id => @seggi.seconda.id), class: 'btn btn-blue btn-block' %>
 					<% else 
@@ -110,7 +110,7 @@
 						<dt><strong>Totali: </strong></dt>
 						<dd><%= @votanti3 %></dd>
 						<dt><strong>Percentuale: </strong></dt>
-						<dd><strong><%= @perc3 %></strong></dd>
+						<dd><strong><%= number_to_percentage(@perc3, precision: 2) %></strong></dd>
 					</dl>
 					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_terza_path(:seggi_id => @seggi.id, :id => @seggi.terza.id), class: 'btn btn-blue btn-block' %>
 					<% else

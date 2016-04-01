@@ -33,10 +33,10 @@ class SeggisController < ApplicationController
                       end
                     end
     
-    @perc1 = (@votanti1 * 100 / @iscritti.to_f).to_i if @seggi.prima
-    @perc2 = (@votanti2 * 100 / @iscritti.to_f).to_i if @seggi.seconda
-    @perc3 = (@votanti3 * 100 / @iscritti.to_f).to_i if @seggi.terza
-    @percentuale_tot = (@votanti_tot.to_f * 100 / @iscritti.to_f).to_i
+    @perc1 = (@votanti1 * 100 / @iscritti.to_f).to_f if @seggi.prima
+    @perc2 = (@votanti2 * 100 / @iscritti.to_f).to_f if @seggi.seconda
+    @perc3 = (@votanti3 * 100 / @iscritti.to_f).to_f if @seggi.terza
+    @percentuale_tot = (@votanti_tot.to_f * 100 / @iscritti.to_f).to_f
 
     #number_to_percentage(@percentuale_tot, precision: 2 )
 
