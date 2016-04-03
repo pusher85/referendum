@@ -4,6 +4,7 @@ class FinaleController < ApplicationController
   def new
 		@seggio = Seggi.find(params[:seggi_id])
 		@finale = Finale.new
+    @votanti = @seggio.terza.maschi + @seggio.terza.femmine
 	end
 
 

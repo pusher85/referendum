@@ -1,12 +1,16 @@
 class SeggisController < ApplicationController
   before_action :set_seggi, only: [:show, :edit, :update, :destroy]
+  #before_action :quadra_seggi, only: [:show, :index]
 
   # GET /seggis
   # GET /seggis.json
   def index
-    @seggis = Seggi.all.order(:numero)
-    
-    
+    @seggis = Seggi.all.order(:numero).each
+
+    #@seggi = Seggi.all
+    #@quadra_1 = @seggi.prima ? ((@seggi.prima.maschi > @seggi.maschi) || (@seggi.prima.femmine > @seggi.femmine) ? false : true) : false
+    #@quadra_2 = @seggi.seconda ? ((@seggi.seconda.maschi > @seggi.maschi) || (@seggi.seconda.femmine > @seggi.femmine) || (@seggi.seconda.maschi <= @seggi.prima.maschi) || (@seggi.seconda.femmine <= @seggi.prima.femmine) ? false: true) : false
+    #@quadra_3 = @seggi.terza ? ((@seggi.terza.maschi > @seggi.maschi) || (@seggi.terza.femmine > @seggi.femmine) || (@seggi.terza.maschi <= @seggi.seconda.maschi) || (@seggi.terza.femmine <= @seggi.seconda.femmine) ? false : true) : false
   end
 
   # GET /seggis/1
@@ -43,6 +47,11 @@ class SeggisController < ApplicationController
       @si_perc = ((100 * @seggi.finale.si / @validi.to_f ).to_f).round(2)
       @no_perc = ((100 * @seggi.finale.no / @validi.to_f ).to_f).round(2)
     end
+
+
+    @quadra_1 = @seggi.prima ? ((@seggi.prima.maschi > @seggi.maschi) || (@seggi.prima.femmine > @seggi.femmine) ? false : true) : false
+    @quadra_2 = @seggi.seconda ? ((@seggi.seconda.maschi > @seggi.maschi) || (@seggi.seconda.femmine > @seggi.femmine) || (@seggi.seconda.maschi <= @seggi.prima.maschi) || (@seggi.seconda.femmine <= @seggi.prima.femmine) ? false: true) : false
+    @quadra_3 = @seggi.terza ? ((@seggi.terza.maschi > @seggi.maschi) || (@seggi.terza.femmine > @seggi.femmine) || (@seggi.terza.maschi <= @seggi.seconda.maschi) || (@seggi.terza.femmine <= @seggi.seconda.femmine) ? false : true) : false
 
     #number_to_percentage(@percentuale_tot, precision: 2 )
 
@@ -106,5 +115,11 @@ class SeggisController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def seggi_params
       params.require(:seggi).permit(:descrizione, :numero, :maschi, :femmine)
+    end
+
+    def quadra_seggi
+      @quadra_1 = @seggi.prima ? ((@seggi.prima.maschi > @seggi.maschi) || (@seggi.prima.femmine > @seggi.femmine) ? false : true) : false
+      @quadra_2 = @seggi.seconda ? ((@seggi.seconda.maschi > @seggi.maschi) || (@seggi.seconda.femmine > @seggi.femmine) || (@seggi.seconda.maschi <= @seggi.prima.maschi) || (@seggi.seconda.femmine <= @seggi.prima.femmine) ? false: true) : false
+      @quadra_3 = @seggi.terza ? ((@seggi.terza.maschi > @seggi.maschi) || (@seggi.terza.femmine > @seggi.femmine) || (@seggi.terza.maschi <= @seggi.seconda.maschi) || (@seggi.terza.femmine <= @seggi.seconda.femmine) ? false : true) : false
     end
 end

@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<% if !@quadra_1 || !@quadra_2 || !@quadra_3 %>
+<div class="row">
+	<div class="col-md-12">
+		<div class="alert alert-danger">
+			<i class="fa fa-times-circle"></i>
+			<strong>ATTENZIONE!</strong> Errori di quadratura nelle rilevazioni.
+		</div>
+	</div>
+</div>
+<% end %>
+
+
+
 <div class="row">
 	<div class="col-md 12 center">
-		<h3>Dettagli sezione N. <%= @seggi.numero %> - <%= @seggi.descrizione %></h3>
+		<h3>Sezione N. <%= @seggi.numero %> - <%= @seggi.descrizione %></h3>
 	</div>
 </div>
 
@@ -10,20 +23,24 @@
 	<ul class="mini-stats col-sm-12">
 		<li class="col-sm-4 col-xs-4">
 			<div class="values">
+				
 				<i class="clip-user-4 circle-icon circle-green"></i>
-				<strong><span data-original-title="Dati Seggio" data-content="Iscritti" data-placement="bottom" data-trigger="hover" class="popovers"><%= @iscritti %></strong>
+				<strong><div>Corpo Elettorale</div></strong>
+				<strong><span data-original-title="Maschi | Donne" data-content="<%= @seggi.maschi %> | <%= @seggi.femmine %>" data-placement="bottom" data-trigger="hover" class="popovers"><%= @iscritti %></strong>
 			</div>
 		</li>
 		<li class="col-sm-4 col-xs-4">
 			<div class="values">
-				<i class="clip-settings circle-icon circle-bricky"></i>
-				<strong><span data-original-title="Ultima Rilevazione" data-content="Votanti" data-placement="bottom" data-trigger="hover" class="popovers"><%= @votanti_tot %></span></strong>
+				<i class="clip-settings circle-icon circle-<%= @seggi.terza ? 'green' : 'teal' %>"></i>
+				<strong><div>Affluenza per il seggio</div></strong>
+				<strong><span data-original-title="Dati" data-content="<%= @seggi.terza ? 'Definitivi' : 'Parziali' %>" data-placement="bottom" data-trigger="hover" class="popovers"><%= @votanti_tot %></span></strong>
 			</div>
 		</li>
 		<li class="col-sm-4 col-xs-4">
 			<div class="values">
-				<i class="clip-target circle-icon circle-teal"></i>
-				<strong><span data-original-title="Ultima Rilevazione" data-content="Percentuale Votanti" data-placement="bottom" data-trigger="hover" class="popovers"><%= number_to_percentage(@percentuale_tot, precision: 2 )%></span></strong>
+				<i class="clip-target circle-icon circle-<%= @seggi.terza ? 'green' : 'teal' %>"></i>
+				<strong><div>Affluenza percentale per il seggio</div></strong>
+				<strong><span data-original-title="Dati" data-content="<%= @seggi.terza ? 'Definitivi' : 'Parziali' %>" data-placement="bottom" data-trigger="hover" class="popovers"><%= number_to_percentage(@percentuale_tot, precision: 2 )%></span></strong>
 				
 			</div>
 		</li>
@@ -35,7 +52,7 @@
 	<div class="col-md-4">
 		<div class="well well-sm">
 			<div class="row center">
-				<div class="col-md-12"><h4>Prima Rilevazione</h4></div>
+				<div class="col-md-12"><h4>Prima Rilevazione</h4><%= '<p class="text-danger">Errori Quadratura 1 </p>'.html_safe if !@quadra_1 %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
@@ -66,7 +83,7 @@
 	<div class="col-md-4">
 		<div class="well well-sm">
 			<div class="row center">
-				<div class="col-md-12"><h4>Seconda Rilevazione</h4></div>
+				<div class="col-md-12"><h4>Seconda Rilevazione</h4><%= '<p class="text-danger">Errori Quadratura</p>'.html_safe if !@quadra_2 %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
@@ -97,7 +114,7 @@
 	<div class="col-md-4">
 		<div class="well well-sm">
 			<div class="row center">
-				<div class="col-md-12"><h4>Terza Rilevazione</h4></div>
+				<div class="col-md-12"><h4>Terza Rilevazione</h4><%= '<p class="text-danger">Errori Quadratura</p>'.html_safe if !@quadra_3 %></div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
@@ -131,13 +148,13 @@
 	<div class="col-md-12">
 		<% if @seggi.terza %>
 			<% if !@seggi.finale %>
-				<%= link_to '<i class="fa fa-plus"></i> Crea Scrutino Finale'.html_safe, new_seggi_finale_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
+				<%= link_to '<i class="fa fa-plus"></i> Procedere allo Scrutino Finale'.html_safe, new_seggi_finale_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
 			<% else %>
 				<div class="well well-sm">
 					<span class=center><h3>Risultati Scrutino Finale</h3></span>
 
 					<div class="row">
-						<div class="col-sm-5">
+						<div class="col-sm-4">
 							<div class="row space12">
 								<div class="col-sm-6">
 									<div class="easy-pie-chart">
@@ -158,10 +175,10 @@
 							</div>
 						</div>
 
-						<div class="col-sm-7">
+						<div class="col-sm-8">
 							<div class="row space12">
 								<ul class="mini-stats col-sm-12">
-									<li class="col-sm-4">
+									<li class="col-sm-3">
 										<div class="sparkline_bar_good">
 											<span>3,5,9,8,13,11,14</span>+10%
 										</div>
@@ -170,7 +187,7 @@
 											Bianche
 										</div>
 									</li>
-									<li class="col-sm-4">
+									<li class="col-sm-3">
 										<div class="sparkline_bar_neutral">
 											<span>20,15,18,14,10,12,15,20</span>0%
 										</div>
@@ -179,7 +196,7 @@
 											Nulle
 										</div>
 									</li>
-									<li class="col-sm-4">
+									<li class="col-sm-3">
 										<div class="sparkline_bar_bad">
 											<span>4,6,10,8,12,21,11</span>+50%
 										</div>
@@ -187,6 +204,9 @@
 											<strong>18304</strong>
 											Contestate
 										</div>
+									</li>
+									<li class="col-sm-3">
+										Quadratura
 									</li>
 								</ul>
 							</div>
@@ -204,8 +224,10 @@
 	</div>
 </div>
 
+<div class="row">
+	<div class="col-md-6"></div>
+</div>
+<%= link_to 'Back', seggis_path, :class => 'btn btn-bricky' %>
+<%= link_to 'Modifica Seggio', edit_seggi_path(@seggi), :class => 'btn btn-primary' %>
 
-
-<%= link_to 'Edit', edit_seggi_path(@seggi) %> |
-<%= link_to 'Back', seggis_path %>
 <%= debug(params) %>

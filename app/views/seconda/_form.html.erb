@@ -19,7 +19,7 @@
     <div class="col-md-3">
       <%= f.label :maschi %>
       <div class="form-group input-group">
-        <%= f.number_field :maschi, class: "form-control" %>
+        <%= f.number_field :maschi, class: "form-control input-sm" %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @seconda.maschi %> </span>
         <% end %>
@@ -29,7 +29,7 @@
     <div class="col-md-3">
       <%= f.label :femmine %>
       <div class="form-group input-group">
-        <%= f.number_field :femmine, class: "form-control" %>
+        <%= f.number_field :femmine, class: "form-control input-sm" %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @seconda.femmine %> </span>
         <% end %>
@@ -41,7 +41,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= link_to 'Back', :back, :class => 'btn btn-bricky' %>
+      <%= link_to 'Back', seggi_path(:id => @seggio), :class => 'btn btn-bricky' %>
       <%= f.submit 'Salva', :class => 'btn btn-success' %>
     </div>
   </div>

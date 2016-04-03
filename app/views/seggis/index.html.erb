@@ -13,7 +13,7 @@
       <thead>
         <tr>
           <th> # </th>
-          <th>Descrizione</th>
+          <!-- <th>Descrizione</th> -->
           <th> | </th>
           <th>Maschi</th>
           <th>Femmine</th>
@@ -44,16 +44,21 @@
             @tot_prima = seggi.prima.maschi + seggi.prima.femmine
             @perc_prima = number_to_percentage(@tot_prima.to_f * 100 / @iscritti.to_f, precision: 2)
             @ok1 = true
+            
+            @quadra_1 = (seggi.prima.maschi > seggi.maschi) || (seggi.prima.femmine > seggi.femmine) ? false : true
           else
             @ok1 = false
+            @quadra_1 = true
           end
 
           if seggi.seconda
             @tot_seconda = seggi.seconda.maschi + seggi.seconda.femmine
             @perc_seconda = number_to_percentage(@tot_seconda.to_f * 100 / @iscritti.to_f, precision: 2)
             @ok2 = true
+            @quadra_2 = (seggi.seconda.maschi > seggi.maschi) || (seggi.seconda.femmine > seggi.femmine) || (seggi.seconda.maschi <= seggi.prima.maschi) || (seggi.seconda.femmine <= seggi.prima.femmine) ? false: true
           else
             @ok2 = false
+            @quadra_2 = true
           end
 
 
@@ -61,14 +66,22 @@
             @tot_terza = seggi.terza.maschi + seggi.terza.femmine
             @perc_terza = number_to_percentage(@tot_terza.to_f * 100 / @iscritti.to_f, precision: 2)
             @ok3 = true
+            @quadra_3 = (seggi.terza.maschi > seggi.maschi) || (seggi.terza.femmine > seggi.femmine) || (seggi.terza.maschi <= seggi.seconda.maschi) || (seggi.terza.femmine <= seggi.seconda.femmine) ? false : true
           else
             @ok3 = false
+            @quadra_3 = true
           end
+
+          
+          @quadra_ok = (@quadra_1 && @quadra_2 && @quadra_3) ? true : false
+         
+          
+
           %>
 
           <tr>
             <td><%= seggi.numero %></td>
-            <td><%= seggi.descrizione %></td>
+            <!-- <td><%= seggi.descrizione %></td>-->
             <td> | </td>
 
             <td><%= seggi.maschi %></td>
@@ -92,7 +105,9 @@
             <td> <%= @perc_terza if seggi.terza %></td>
             <td> | </td>
 
-            <td><%= link_to 'Apri Seggio', seggi %></td>
+            <td>
+              <%= link_to 'Apri Seggio', seggi %>
+              <%= @quadra_ok ? 'ok' : '<span class="label label-danger">ATTENZIONE !</span>'.html_safe %></td>
             <!-- <td><%= link_to 'Edit Seggio', edit_seggi_path(seggi) %></td> -->
             <!-- <td><%= link_to 'Destroy', seggi, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
           </tr>

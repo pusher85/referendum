@@ -1,12 +1,14 @@
 class TerzaController < ApplicationController
 	def new
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Terza rilevazione per il seggio #{@seggio.numero}"
 		@terza = Terza.new
 	end
 
 
 	def create
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Terza rilevazione per il seggio #{@seggio.numero}"
 		@terza = Terza.new(terza_params)
 		@terza.seggi_id = @seggio.id
 		if @terza.save
@@ -19,6 +21,7 @@ class TerzaController < ApplicationController
 
 	def edit
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Modifica Terza rilevazione per il seggio #{@seggio.numero}"
   	@terza = Terza.where(:seggi_id => @seggio).find(params[:id])
   end
 

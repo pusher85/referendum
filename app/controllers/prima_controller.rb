@@ -1,12 +1,17 @@
 class PrimaController < ApplicationController
+
+  
 	def new
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Prima rilevazione per il seggio #{@seggio.numero}"
 		@prima = Prima.new
+
 	end
 
 
 	def create
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Prima rilevazione per il seggio #{@seggio.numero}"
 		@prima = Prima.new(prima_params)
 		@prima.seggi_id = @seggio.id
 		if @prima.save
@@ -19,6 +24,7 @@ class PrimaController < ApplicationController
 
 	def edit
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Modifica Prima rilevazione per il seggio #{@seggio.numero}"
   	@prima = Prima.where(:seggi_id => @seggio).find(params[:id])
   end
 

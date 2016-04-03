@@ -1,0 +1,68 @@
+<div class="row">
+	<div class="col-md-4">
+		<div class="alert alert-block alert-info fade in">
+			<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Info!</h4>
+			<h3>Riepilogo iscritti per la sezione</h3>
+				<dl class="dl-horizontal">
+					<dt>Totale Maschi</dt>
+					<dd><%= @seggio.maschi %></dd>
+					<dt>Totale Femmine</dt>
+					<dd><%= @seggio.femmine %></dd>
+					<dt>Totale Iscritti</dt>
+					<dd><%= @seggio.maschi + @seggio.femmine %></dd>
+				</dl>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="alert alert-block alert-info fade in">
+			<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Info!</h4>
+			<h3>Rilevazione Precedente</h3>
+				<dl class="dl-horizontal">
+					<dt>Maschi</dt>
+					<dd><%= @seggio.prima.maschi %></dd>
+					<dt>Femmine</dt>
+					<dd><%= @seggio.prima.femmine %></dd>
+				</dl>
+		</div>
+	</div>
+
+
+	<% if params[:action] == 'edit' %>
+	<% 
+		@quadra_m =  @seconda.maschi > @seggio.maschi ? true : false
+		@quadra_f =  @seconda.femmine > @seggio.femmine ? true : false
+
+		@prec_m = @seconda.maschi <= @seggio.prima.maschi ? true : false
+		@prec_f = @seconda.femmine <= @seggio.prima.femmine ? true : false
+	%>
+	
+
+		<% if @quadra_f || @quadra_m || @prec_f || @prec_m %>
+	
+
+	<div class="col-md-4">
+		<div class="alert alert-block alert-danger fade in">
+			<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
+			<h3>Quadratura Irregolare</h3>
+				<%= '<p>Il numero di maschi per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_m %>
+				<%= '<p>Il numero delle femmine per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_f %>
+
+				<%= '<p>Il numero dei maschi è inferiore alla precedente rilevazione</p>'.html_safe if @prec_m %>
+				<%= '<p>Il numero delle femmine è inferiore alla precedente rilevazione</p>'.html_safe if @prec_f %>
+		</div>
+	</div>
+
+	<% else %>
+		<div class="col-md-4">
+			<div class="alert alert-block alert-success fade in">
+				<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
+				<h3>Quadratura Regolare</h3>
+			</div>
+		</div>
+
+	<% end %>
+
+	<% end %>
+
+</div>

@@ -1,12 +1,14 @@
 class SecondaController < ApplicationController
 	def new
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Seconda rilevazione per il seggio #{@seggio.numero}"
 		@seconda = Seconda.new
 	end
 
 
 	def create
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Inserimento Seconda rilevazione per il seggio #{@seggio.numero}"
 		@seconda = Seconda.new(seconda_params)
 		@seconda.seggi_id = @seggio.id
 		if @seconda.save
@@ -19,6 +21,7 @@ class SecondaController < ApplicationController
 
 	def edit
 		@seggio = Seggi.find(params[:seggi_id])
+    @titolo = "Modifica Seconda rilevazione per il seggio #{@seggio.numero}"
   	@seconda = Seconda.where(:seggi_id => @seggio).find(params[:id])
   end
 

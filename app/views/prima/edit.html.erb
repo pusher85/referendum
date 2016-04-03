@@ -1,8 +1,4 @@
-<div class="row">
-	<div class="col-md-12">
-		<h1>Modifica prima rilevazione per il seggio <%= @seggio.numero %></h1>
-	</div>
-</div>
+<%= render 'riepilogo' %>
 
 <%= render 'form', {url: seggi_prima_path, method: 'patch'} %>
 

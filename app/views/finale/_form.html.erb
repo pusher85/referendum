@@ -25,7 +25,7 @@
       <li class="col-sm-6 col-xs-6">
         <div class="values">
         <strong>Quadratura</strong>
-        <i class="circle-icon circle-bricky">NO</i>
+        <i class="circle-icon circle-bricky" id="esito_quadratura">NO</i>
         </div>
       </li>
     </ul>
@@ -39,7 +39,7 @@
     <div class="col-md-3">
       <%= f.label 'Voto = SI' %>
       <div class="form-group input-group">
-        <%= f.number_field :si, class: "form-control" %>
+        <%= f.number_field :si, class: "form-control input-sm" %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @finale.si %> </span>
         <% end %>
@@ -48,7 +48,7 @@
     <div class="col-md-3">
       <%= f.label 'Voto = NO' %>
       <div class="form-group input-group">
-        <%= f.number_field :no, class: "form-control" %>
+        <%= f.number_field :no, class: "form-control input-sm" %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @finale.no %> </span>
         <% end %>
@@ -60,7 +60,7 @@
       <div class="col-md-3">
         <%= f.label :bianche %>
         <div class="form-group input-group">
-          <%= f.number_field :bianche, class: "form-control" %>
+          <%= f.number_field :bianche, class: "form-control input-sm" %>
           <% if method == 'patch' %>
             <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @finale.bianche %> </span>
           <% end %>
@@ -69,7 +69,7 @@
       <div class="col-md-3">
         <%= f.label :nulle %>
         <div class="form-group input-group">
-        <%= f.number_field :nulle, class: "form-control" %>
+        <%= f.number_field :nulle, class: "form-control input-sm" %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @finale.nulle %> </span>
         <% end %>
@@ -78,7 +78,7 @@
       <div class="col-md-3">
         <%= f.label :contestate %>
         <div class="form-group input-group">
-          <%= f.number_field :contestate, class: "form-control" %>
+          <%= f.number_field :contestate, class: "form-control input-sm" %>
           <% if method == 'patch' %>
             <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @finale.contestate %> </span>
           <% end %>
@@ -86,7 +86,7 @@
       </div>
   </div>
 
-
+  Totali=<%= number_field :conteggio, 'totali', disabled: true %>
 
   
   <div class="row">
@@ -96,7 +96,48 @@
     </div>
   </div>
   
+<script>
+  //$("#finale_bianche").change(function() { 
+  $("[id^=finale_").change(function() { 
+    var si = $('#finale_si').val();
+    var no = $('#finale_no').val();
+    var bianche = $('#finale_bianche').val();
+    var nulle = $('#finale_nulle').val();
+    var contestate = $('#finale_contestate').val();
+    var totale = parseInt(si) + parseInt(no) + parseInt(bianche) + parseInt(nulle) + parseInt(contestate)
+    //alert ( totale );
+    var votanti = <%= @votanti %>
 
+
+    $("#conteggio_totali").val(totale);
+    
+    if (votanti == totale) {
+     alert ( 'quadratura ok' );
+     $("#esito_quadratura").val('si');
+
+  };
+  });
+
+$(document).ready(function() {
+  sommatutti();
+
+
+});
+
+
+  function sommatutti() {
+    var votanti = <%= @votanti %>
+    var si = $('#finale_si').val();
+    var no = $('#finale_no').val();
+    var bianche = $('#finale_bianche').val();
+    var nulle = $('#finale_nulle').val();
+    var contestate = $('#finale_contestate').val();
+    var totale = parseInt(si) + parseInt(no) + parseInt(bianche) + parseInt(nulle) + parseInt(contestate)
+    $("#conteggio_totali").val(totale);
+
+  }
+
+</script>
 
 
 
