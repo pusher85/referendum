@@ -102,16 +102,24 @@
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot" %>
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.pie" %>
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.resize.min" %>
-	<%= javascript_include_tag "/assets/plugins/jquery.sparkline/jquery.sparkline" %>
+	<%#= javascript_include_tag "/assets/plugins/jquery.sparkline/jquery.sparkline" %>
 	<%= javascript_include_tag "/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart" %>
 	<%= javascript_include_tag "/assets/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min" %>
 	<%= javascript_include_tag "/assets/js/scrutino" %>
 
+	<script>
+					jQuery(document).on('page:change', function() {
+					Main.init();
+					//UIElements.init();
+					//UIModals.init();
+					Index.init();
+				});
+			</script>
 
 	<% end %>	
-
+	
 	<script>
-			jQuery(document).ready(function() {
+			jQuery(document).on('page:change', function() {
 				Main.init();
 				
 				<% if params[:controller] == 'seggis' && params[:action] == 'show' %>
@@ -120,6 +128,9 @@
 				<% end %>
 			});
 		</script>
+
+	
+
 
 </body>
 </html>

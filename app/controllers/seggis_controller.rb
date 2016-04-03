@@ -49,9 +49,9 @@ class SeggisController < ApplicationController
     end
 
 
-    @quadra_1 = @seggi.prima ? ((@seggi.prima.maschi > @seggi.maschi) || (@seggi.prima.femmine > @seggi.femmine) ? false : true) : false
-    @quadra_2 = @seggi.seconda ? ((@seggi.seconda.maschi > @seggi.maschi) || (@seggi.seconda.femmine > @seggi.femmine) || (@seggi.seconda.maschi <= @seggi.prima.maschi) || (@seggi.seconda.femmine <= @seggi.prima.femmine) ? false: true) : false
-    @quadra_3 = @seggi.terza ? ((@seggi.terza.maschi > @seggi.maschi) || (@seggi.terza.femmine > @seggi.femmine) || (@seggi.terza.maschi <= @seggi.seconda.maschi) || (@seggi.terza.femmine <= @seggi.seconda.femmine) ? false : true) : false
+    @quadra_1 = @seggi.prima ? ((@seggi.prima.maschi > @seggi.maschi) || (@seggi.prima.femmine > @seggi.femmine) ? false : true) : true
+    @quadra_2 = @seggi.seconda ? ((@seggi.seconda.maschi > @seggi.maschi) || (@seggi.seconda.femmine > @seggi.femmine) || (@seggi.seconda.maschi <= @seggi.prima.maschi) || (@seggi.seconda.femmine <= @seggi.prima.femmine) ? false: true) : true
+    @quadra_3 = @seggi.terza ? ((@seggi.terza.maschi > @seggi.maschi) || (@seggi.terza.femmine > @seggi.femmine) || (@seggi.terza.maschi <= @seggi.seconda.maschi) || (@seggi.terza.femmine <= @seggi.seconda.femmine) ? false : true) : true
 
     #number_to_percentage(@percentuale_tot, precision: 2 )
 
