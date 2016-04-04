@@ -5,6 +5,7 @@ class SeggisController < ApplicationController
   # GET /seggis
   # GET /seggis.json
   def index
+    @titolo = 'Stato delle rilevazioni per saggio'
     @seggis = Seggi.all.order(:numero).each
 
     #@seggi = Seggi.all
@@ -59,11 +60,13 @@ class SeggisController < ApplicationController
 
   # GET /seggis/new
   def new
+    @titolo = 'Inserimento nuovo seggio'
     @seggi = Seggi.new
   end
 
   # GET /seggis/1/edit
   def edit
+    @titolo = 'Modifica del seggio'
   end
 
   # POST /seggis
@@ -106,6 +109,12 @@ class SeggisController < ApplicationController
     end
   end
 
+  def scrutini
+
+  end
+
+  #--------------------------------------------------------------------------------------------------
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_seggi
@@ -114,7 +123,7 @@ class SeggisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def seggi_params
-      params.require(:seggi).permit(:descrizione, :numero, :maschi, :femmine)
+      params.require(:seggi).permit(:descrizione, :numero, :maschi, :femmine, :speciale)
     end
 
     def quadra_seggi

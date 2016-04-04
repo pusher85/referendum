@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401162051) do
+ActiveRecord::Schema.define(version: 20160404153520) do
 
   create_table "finales", force: :cascade do |t|
     t.integer  "seggi_id",   limit: 4
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160401162051) do
     t.integer  "femmine",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.boolean  "speciale"
   end
 
   create_table "terzas", force: :cascade do |t|

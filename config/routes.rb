@@ -3,9 +3,17 @@ Rails.application.routes.draw do
 
   root to: "seggis#index"
 
+  #resources :public
+  get 'public/corpo'
+  get 'public/affluenza'
+  get 'public/scrutini'
+  get 'public/index', :path => "public"
 
+
+  
   resources :seggis do
     #resources :rilevazionis
+    #get 'seggis/scrutini', :path => "scrutini"
     resources :prima
     resources :seconda
     resources :terza

@@ -1,0 +1,53 @@
+<%= render 'intestazione' %>
+
+
+<div class="row">
+	<div class="col-md-12">
+		
+		<!--<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-external-link-square"></i>
+				Corpo Elettorale
+			</div>
+			<div class="panel-body"> -->
+
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered " id="tabella-corpoelettorale">
+						<thead>
+							<tr>
+								<th rowspan="2">Sez</th>
+								<th rowspan="2">Sede</th>
+								<th colspan="3" class="center">Corpo Elettroale</th>
+							</tr>
+							<tr>
+								<th class="text-primary">Maschi</th>
+								<th class="text-danger">Donne</th>
+								<th >Totale</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @seggio.each do |seggi| %>
+							<tr>
+								<td><%= seggi.numero %> <%= '<i class="fa fa-wheelchair"></i>'.html_safe if seggi.speciale %></td>
+								<td><%= seggi.descrizione %></td>
+								<td class="text-primary"><%= seggi.maschi %></td>
+								<td class="text-danger"><%= seggi.femmine %></td>
+								<td><%= seggi.maschi + seggi.femmine %></td>
+							</tr>
+							<% end %>
+							<tr>
+								<td colspan="2" style="text-align: right;"><strong>TOTALE</strong></td>
+								<td class="text-primary"><strong><%= @tot_m %></strong></td>
+								<td class="text-danger"><strong><%= @tot_f %></strong></td>
+								<td><strong><%= @totale %></strong></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			<!--</div>
+		</div> -->
+
+
+	</div>
+</div>

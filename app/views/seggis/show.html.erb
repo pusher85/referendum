@@ -15,6 +15,7 @@
 
 <div class="row">
 	<div class="col-md 12 center">
+		<%= '<h3><i class="fa fa-wheelchair popovers" data-original-title="Tipologia" data-content="Seggio Speciale" data-placement="bottom" data-trigger="hover"></i><h3>'.html_safe if @seggi.speciale %>
 		<h3>Sezione N. <%= @seggi.numero %> - <%= @seggi.descrizione %></h3>
 	</div>
 </div>
@@ -67,7 +68,7 @@
 						<dt><strong>Percentuale: </strong></dt>
 						<dd class="text-danger"><strong><%= number_to_percentage(@perc1, precision: 2 ) %></strong></dd>
 					</dl>
-					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_prima_path(:seggi_id => @seggi.id, :id => @seggi.prima.id), class: 'btn btn-blue btn-block' %>
+					<%= link_to '<i class="fa fa-arrow-right"></i> Modifica'.html_safe, edit_seggi_prima_path(:seggi_id => @seggi.id, :id => @seggi.prima.id), class: 'btn btn-blue btn-block' %>
 					<% else %>
 						<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_prima_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
 					<% end %>
@@ -98,7 +99,7 @@
 						<dt><strong>Percentuale: </strong></dt>
 						<dd class="text-danger"><strong><%= number_to_percentage(@perc2, precision: 2) %></strong></dd>
 					</dl>
-					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_seconda_path(:seggi_id => @seggi.id, :id => @seggi.seconda.id), class: 'btn btn-blue btn-block' %>
+					<%= link_to '<i class="fa fa-arrow-right"></i> Modifica'.html_safe, edit_seggi_seconda_path(:seggi_id => @seggi.id, :id => @seggi.seconda.id), class: 'btn btn-blue btn-block' %>
 					<% else 
 							if @seggi.prima %>
 								<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_seconda_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
@@ -129,7 +130,7 @@
 						<dt><strong>Percentuale: </strong></dt>
 						<dd class="text-danger"><strong><%= number_to_percentage(@perc3, precision: 2) %></strong></dd>
 					</dl>
-					<%= link_to '<i class="fa fa-plus"></i> Modifica'.html_safe, edit_seggi_terza_path(:seggi_id => @seggi.id, :id => @seggi.terza.id), class: 'btn btn-blue btn-block' %>
+					<%= link_to '<i class="fa fa-arrow-right"></i> Modifica'.html_safe, edit_seggi_terza_path(:seggi_id => @seggi.id, :id => @seggi.terza.id), class: 'btn btn-blue btn-block' %>
 					<% else
 							if @seggi.seconda %>
 								<%= link_to '<i class="fa fa-plus"></i> Inserisci Rilevazione'.html_safe, new_seggi_terza_path(:seggi_id => @seggi.id), class: 'btn btn-green btn-block' %>
@@ -217,7 +218,7 @@
 
 
 
-					<%= link_to '<i class="fa fa-plus"></i> Modifica Scrutino Finale'.html_safe, edit_seggi_finale_path(:seggi_id => @seggi.id, :id => @seggi.finale.id), class: 'btn btn-blue btn-block' %>
+					<%= link_to '<i class="fa fa-arrow-right"></i> Modifica Scrutino Finale'.html_safe, edit_seggi_finale_path(:seggi_id => @seggi.id, :id => @seggi.finale.id), class: 'btn btn-blue btn-block' %>
 				</div>
 			<% end %>
 		<% end %>
@@ -227,7 +228,7 @@
 <div class="row">
 	<div class="col-md-6"></div>
 </div>
-<%= link_to 'Back', seggis_path, :class => 'btn btn-bricky' %>
+<%= link_to 'Indietro', seggis_path, :class => 'btn btn-bricky' %>
 <%= link_to 'Modifica Seggio', edit_seggi_path(@seggi), :class => 'btn btn-primary' %>
 
 <%= debug(params) %>
