@@ -98,16 +98,32 @@
   
 <script>
   //$("#finale_bianche").change(function() { 
-  $("[id^=finale_").change(function() { 
+  
+  /*$("[id^=finale_").change(function() { 
     var si = $('#finale_si').val();
     var no = $('#finale_no').val();
     var bianche = $('#finale_bianche').val();
     var nulle = $('#finale_nulle').val();
     var contestate = $('#finale_contestate').val();
-    var totale = parseInt(si) + parseInt(no) + parseInt(bianche) + parseInt(nulle) + parseInt(contestate)
-    //alert ( totale );
-    var votanti = <%= @votanti %>
 
+    if(isNaN(si)) {
+    var si = 0;
+    }
+    if(isNaN(no)) {
+    var no = 0;
+    }
+    if(isNaN(bianche)) {
+    var bianche = 0;
+    }
+    if(isNaN(nulle)) {
+    var nulle = 0;
+    }
+    if(isNaN(contestate)) {
+    var contestate = 0;
+    }
+
+    var totale = parseInt(si) + parseInt(no) + parseInt(bianche) + parseInt(nulle) + parseInt(contestate)
+    var votanti = <%= @votanti %>
 
     $("#conteggio_totali").val(totale);
     
@@ -115,13 +131,18 @@
      alert ( 'quadratura ok' );
      $("#esito_quadratura").val('si');
 
-  };
+    };
   });
+*/
+
+
 
 $(document).ready(function() {
   sommatutti();
+});
 
-
+$("[id^=finale_").keyup(function() { 
+  sommatutti();
 });
 
 
@@ -132,8 +153,26 @@ $(document).ready(function() {
     var bianche = $('#finale_bianche').val();
     var nulle = $('#finale_nulle').val();
     var contestate = $('#finale_contestate').val();
+
+    if (si.length == 0 ) {si = 0;}
+    if (no.length == 0 ) {no = 0;}
+    if (bianche.length == 0 ) {bianche = 0;}
+    if (nulle.length == 0 ) {nulle = 0;}
+    if (contestate.length == 0 ) {contestate = 0;}
+
     var totale = parseInt(si) + parseInt(no) + parseInt(bianche) + parseInt(nulle) + parseInt(contestate)
+
     $("#conteggio_totali").val(totale);
+
+    if (votanti == totale) {
+      $("#esito_quadratura").text('OK');
+      $("#esito_quadratura").toggleClass('circle-bricky circle-green');
+      alert ( 'quadratura ok' );
+    } else { 
+      $("#esito_quadratura").text('No');
+      //$("#esito_quadratura").toggleClass('circle-green');
+      // trovare un modo per impostare sempre e comunque in questo stato la blasse a circle-bricky
+    };
 
   }
 
