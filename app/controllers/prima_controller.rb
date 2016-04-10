@@ -26,6 +26,8 @@ class PrimaController < ApplicationController
 		@seggio = Seggi.find(params[:seggi_id])
     @titolo = "Modifica Prima rilevazione per il seggio #{@seggio.numero}"
   	@prima = Prima.where(:seggi_id => @seggio).find(params[:id])
+    @seconda = true if @seggio.seconda
+    #@terza = true if @seggi.terza
   end
 
   def update

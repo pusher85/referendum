@@ -180,34 +180,28 @@
 							<div class="row space12">
 								<ul class="mini-stats col-sm-12">
 									<li class="col-sm-3">
-										<div class="sparkline_bar_good">
-											<span>3,5,9,8,13,11,14</span>+10%
-										</div>
 										<div class="values">
-											<strong>18304</strong>
-											Bianche
+											<strong>Bianche</strong>
+											<strong><%= @bianche %></strong>
 										</div>
 									</li>
 									<li class="col-sm-3">
-										<div class="sparkline_bar_neutral">
-											<span>20,15,18,14,10,12,15,20</span>0%
-										</div>
 										<div class="values">
-											<strong>3833</strong>
-											Nulle
+											<strong>Nulle</strong>
+											<strong><%= @nulle %></strong>
 										</div>
 									</li>
 									<li class="col-sm-3">
-										<div class="sparkline_bar_bad">
-											<span>4,6,10,8,12,21,11</span>+50%
-										</div>
 										<div class="values">
-											<strong>18304</strong>
-											Contestate
+											<strong>Contestate</strong>
+											<strong><%= @contestate %></strong>
 										</div>
 									</li>
 									<li class="col-sm-3">
-										Quadratura
+										<div class="values">
+											<strong>Quadratura</strong>
+											<i class="circle-icon circle-<%= @quadra_finale ? 'green' : 'bricky' %>" id="esito_quadratura"><%= @quadra_finale ? 'OK' : 'NO' %></i>
+										</div>
 									</li>
 								</ul>
 							</div>

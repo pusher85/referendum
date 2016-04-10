@@ -38,6 +38,16 @@ class PublicController < ApplicationController
 		@terza_votanti_m = Terza.sum(:maschi)
 		@terza_votanti_f = Terza.sum(:femmine)
 
+		@finale_conteggio = Finale.count
+		@finale_tot_si = Finale.sum(:si)
+		@finale_tot_no = Finale.sum(:no)
+		@finale_tot_validi = @finale_tot_si + @finale_tot_no
+		@finale_tot_si_perc = (@finale_tot_si * 100 / @finale_tot_validi.to_f).to_f
+		@finale_tot_no_perc = (@finale_tot_no * 100 / @finale_tot_validi.to_f).to_f
+		@finale_tot_bianche = Finale.sum(:bianche)
+		@finale_tot_nulle = Finale.sum(:nulle)
+		@finale_tot_contestate = Finale.sum(:contestate)
+
 	end
 
 	def scrutini

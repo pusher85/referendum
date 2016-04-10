@@ -23,6 +23,7 @@ class SecondaController < ApplicationController
 		@seggio = Seggi.find(params[:seggi_id])
     @titolo = "Modifica Seconda rilevazione per il seggio #{@seggio.numero}"
   	@seconda = Seconda.where(:seggi_id => @seggio).find(params[:id])
+    @terza = true if @seggio.terza
   end
 
   def update

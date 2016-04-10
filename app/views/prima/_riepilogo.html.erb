@@ -15,33 +15,47 @@
 	</div>
 
 	<% if params[:action] == 'edit' %>
-	<% 
-		@quadra_m =  @prima.maschi > @seggio.maschi ? true : false
-		@quadra_f =  @prima.femmine > @seggio.femmine ? true : false
-	%>
-	
+		<% 
+			@quadra_m =  @prima.maschi > @seggio.maschi ? true : false
+			@quadra_f =  @prima.femmine > @seggio.femmine ? true : false
+		%>
+		
 
-		<% if @quadra_f || @quadra_m %>
-	
+			<% if @quadra_f || @quadra_m %>
+		
 
-	<div class="col-md-4">
-		<div class="alert alert-block alert-danger fade in">
-			<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
-			<h3>Quadratura Irregolare</h3>
-				<%= '<p>Il numero di maschi per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_m %>
-				<%= '<p>Il numero delle femmine per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_f %>
-		</div>
-	</div>
+				<div class="col-md-4">
+					<div class="alert alert-block alert-danger fade in">
+						<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
+						<h3>Quadratura Irregolare</h3>
+							<%= '<p>Il numero di maschi per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_m %>
+							<%= '<p>Il numero delle femmine per la rilevazione supera gli iscritti</p>'.html_safe if @quadra_f %>
+					</div>
+				</div>
 
-	<% else %>
-		<div class="col-md-4">
-			<div class="alert alert-block alert-success fade in">
-				<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
-				<h3>Quadratura Regolare</h3>
-			</div>
-		</div>
+			<% else %>
 
-	<% end %>
+				<div class="col-md-4">
+					<div class="alert alert-block alert-success fade in">
+						<h4 class="alert-heading"><i class="fa fa-info-circle"></i> Valori Quadratura!</h4>
+						<h3>Quadratura Regolare</h3>
+					</div>
+				</div>
+
+			<% end %>
+
+			<div class="col-md-3">
+        <div class="dropdown pull-right">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Azioni <span class="caret"></span></button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          	<% if !@seconda  %>
+            <li><%= link_to 'Elimina rilevazione', seggi_prima_path, method: :delete,  data: { confirm: "Sicuro di voler eliminare la rilevazione? Non sarà possibile tornare indietro" } %></li>
+            <% else %>
+            <li>Impossibile Eliminare</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
 
 	<% end %>
 

@@ -18,7 +18,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">Pervenuti <%= @prima_conteggio %> seggi su <%= @totale_seggi %></div>
+						<div class="col-md-12">Pervenuti <%= @prima_conteggio %> seggi su <%= @totale_seggi %></div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
@@ -87,7 +87,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">Pervenuti <%= @seconda_conteggio %> seggi su <%= @totale_seggi %></div>
+						<div class="col-md-12">Pervenuti <%= @seconda_conteggio %> seggi su <%= @totale_seggi %></div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
@@ -146,12 +146,12 @@
 				<div class="table-responsive">
 					<div class="row">
 						<div class="col-md-12 center">
-							<h4>Ore 23:00 - Dati Affluenza</h4>
+							<h4>Ore 23:00 - Votanti</h4>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">Pervenuti <%= @terza_conteggio %> seggi su <%= @totale_seggi %></div>
+						<div class="col-md-12">Pervenuti <%= @terza_conteggio %> seggi su <%= @totale_seggi %></div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
@@ -196,5 +196,65 @@
 	<% end %>
 
 </div>
+
+
+<!-- inserire check per verifica se è stato creato almeno uno scrutino -->
+<% if @finale_conteggio.to_i > 0 %>
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-external-link-square"></i>
+				Risultati Scrutini 
+			</div>
+			<div class="panel-body">
+
+				<div class="row">
+						
+					<div class="col-sm-3">
+						<div class="center text-success"><strong>Voti Si</strong></div>
+						<div class="center"><%= @finale_tot_si %></div>
+						<div class="center text-success"><strong><%= number_to_percentage(@finale_tot_si_perc, precision: 2) %></strong></div>
+					</div>
+
+					<div class="col-sm-3">
+						<div class="center bricky"><strong>Voti No</strong></div>
+						<div class="center"><%= @finale_tot_no %></div>
+						<div class="center bricky"><strong><%= number_to_percentage(@finale_tot_no_perc, precision: 2) %></strong></div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="center"><strong>Schede Bianche</strong></div>
+						<div class="center"><%= @finale_tot_bianche %></div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="center "><strong>Schede Nulle</strong></div>
+						<div class="center"><%= @finale_tot_nulle %></div>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="center"><strong>Schede Contestate</strong></div>
+						<div class="center"><%= @finale_tot_contestate %></div>
+					</div>
+
+					</div>
+
+					
+
+			</div>
+		</div>
+
+		<% if @finale_conteggio < @totale_seggi %>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="alert alert-danger"><i class="fa fa-info-circle"></i> <strong>Dati Parziali</strong> - Non sono ancora stati scrutinati tutti i seggi. Pervenuti <%= @finale_conteggio %> su <%= @totale_seggi %></div>
+				</div>
+			</div>
+		<% end %>
+
+	</div>
+</div>
+<% end %>
 
 

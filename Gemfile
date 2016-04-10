@@ -63,3 +63,6 @@ gem 'mysql'
 gem 'therubyracer',  platforms: :ruby
 ###################################################
 
+# autenticazione utenti
+gem 'devise'
+gem 'devise-i18n'

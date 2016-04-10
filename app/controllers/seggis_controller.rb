@@ -47,6 +47,13 @@ class SeggisController < ApplicationController
       @validi = @seggi.finale.si + @seggi.finale.no
       @si_perc = ((100 * @seggi.finale.si / @validi.to_f ).to_f).round(2)
       @no_perc = ((100 * @seggi.finale.no / @validi.to_f ).to_f).round(2)
+
+      @bianche = @seggi.finale.bianche
+      @nulle = @seggi.finale.nulle
+      @contestate = @seggi.finale.contestate
+
+      @cont_finale = @seggi.finale.si + @seggi.finale.no + @seggi.finale.bianche + @seggi.finale.nulle + @seggi.finale.contestate
+      @quadra_finale = true if @cont_finale == @votanti_tot
     end
 
 
@@ -76,7 +83,7 @@ class SeggisController < ApplicationController
 
     respond_to do |format|
       if @seggi.save
-        format.html { redirect_to @seggi, notice: 'Seggi was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Seggi was successfully created.' }
         format.json { render :show, status: :created, location: @seggi }
       else
         format.html { render :new }

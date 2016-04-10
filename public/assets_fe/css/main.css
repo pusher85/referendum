@@ -8,10 +8,10 @@
 /*	Basic Elements & Classes
 /* ---------------------------------------------------------------------- */
 body {
-	color: #888888;
+	color: #000000;
 	direction: ltr;
 	font-family: 'Open+Sans', sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 }
 a, a:focus, a:hover, a:active {
 	outline: 0 !important;

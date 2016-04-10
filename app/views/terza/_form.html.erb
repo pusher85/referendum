@@ -19,7 +19,7 @@
     <div class="col-md-3">
       <%= f.label :maschi %>
       <div class="form-group input-group input-sm">
-        <%= f.number_field :maschi, class: "form-control" %>
+        <%= f.number_field :maschi, class: "form-control", :autofocus => true %>
         <% if method == 'patch' %>
           <span class="help-block"><i class="fa fa-info-circle"></i> Valore precedente = <%= @terza.maschi %> </span>
         <% end %>
@@ -40,8 +40,9 @@
 
 	<div class="row">
     <div class="col-md-12">
-      <%= link_to 'Back', seggi_path(:id => @seggio), :class => 'btn btn-bricky' %>
       <%= f.submit 'Salva', :class => 'btn btn-success' %>
+      <%= link_to 'Back', seggi_path(:id => @seggio), :class => 'btn btn-bricky' %>
+      
     </div>
   </div>
 

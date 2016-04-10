@@ -11,6 +11,7 @@ class FinaleController < ApplicationController
 	def create
 		@seggio = Seggi.find(params[:seggi_id])
 		@finale = Finale.new(finale_params)
+    @votanti = @seggio.terza.maschi + @seggio.terza.femmine
 		@finale.seggi_id = @seggio.id
 		if @finale.save
 			redirect_to root_path
@@ -28,6 +29,7 @@ class FinaleController < ApplicationController
 
   def update
   	@seggio = Seggi.find(params[:seggi_id])
+    @votanti = @seggio.terza.maschi + @seggio.terza.femmine
   	@finale = Finale.where(:seggi_id => @seggio).find(params[:id])
   	if @finale.update(finale_params)
   		redirect_to root_path

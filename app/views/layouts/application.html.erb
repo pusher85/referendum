@@ -100,7 +100,7 @@
 	<%= javascript_include_tag "/assets/js/main" %>
 	<!-- JS Generici FINE -->
 
-	<% if params[:controller] == 'seggis' && params[:action] == 'show' %>
+	<% if (params[:controller] == 'seggis' && params[:action] == 'show') %>
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot" %>
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.pie" %>
 	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.resize.min" %>
@@ -154,23 +154,23 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-                    <%= stylesheet_link_tag "/assets/plugins/bootstrap/css/bootstrap.min", media: "all" %>
-                    <%= stylesheet_link_tag "/assets/plugins/font-awesome/css/font-awesome.min", media: "all" %>
-                    <%= stylesheet_link_tag "/assets/fonts/style", media: "all" %>
-                    <%= stylesheet_link_tag "/assets_fe/plugins/animate.css/animate.min", media: "all" %>
-                    <%= stylesheet_link_tag "/assets_fe/css/main", media: "all" %>
-                    <%= stylesheet_link_tag "/assets_fe/css/main-responsive", media: "all" %>
-                    <%= stylesheet_link_tag "/assets_fe/css/theme_blue", media: "all" %>
-                    <!-- end main js -->
+  <%= stylesheet_link_tag "/assets/plugins/bootstrap/css/bootstrap.min", media: "all" %>
+  <%= stylesheet_link_tag "/assets/plugins/font-awesome/css/font-awesome.min", media: "all" %>
+  <%= stylesheet_link_tag "/assets/fonts/style", media: "all" %>
+  <%= stylesheet_link_tag "/assets_fe/plugins/animate.css/animate.min", media: "all" %>
+  <%= stylesheet_link_tag "/assets_fe/css/main", media: "all" %>
+  <%= stylesheet_link_tag "/assets_fe/css/main-responsive", media: "all" %>
+  <%= stylesheet_link_tag "/assets_fe/css/theme_blue", media: "all" %>
+  <!-- end main js -->
 
-                    <!-- js specifici -->
-                    <%= stylesheet_link_tag "/assets/plugins/revolution_slider/rs-plugin/css/settings" %>
-                    <%#= stylesheet_link_tag "/assets/plugins/flex-slider/flexslider" %>
-                    <%= stylesheet_link_tag "/assets/plugins/colorbox/example2/colorbox" %>
+  <!-- js specifici -->
+  <%= stylesheet_link_tag "/assets/plugins/revolution_slider/rs-plugin/css/settings" %>
+  <%#= stylesheet_link_tag "/assets/plugins/flex-slider/flexslider" %>
+  <%= stylesheet_link_tag "/assets/plugins/colorbox/example2/colorbox" %>
 
-                    <%= stylesheet_link_tag "/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css", media: "all" %>
-                    <%= stylesheet_link_tag "/assets/plugins/bootstrap-modal/css/bootstrap-modal.css", media: "all" %>
-                    <!-- fine specifici -->
+  <%= stylesheet_link_tag "/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css", media: "all" %>
+  <%= stylesheet_link_tag "/assets/plugins/bootstrap-modal/css/bootstrap-modal.css", media: "all" %>
+  <!-- fine specifici -->
 
   <%#= stylesheet_link_tag "/assets/plugins/iCheck/skins/all", media: "all" %>
   <%#= stylesheet_link_tag "/assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette", media: "all" %>
@@ -293,12 +293,31 @@
 <%= javascript_include_tag "/assets/plugins/bootstrap-modal/js/bootstrap-modalmanager" %>
 <%= javascript_include_tag "/assets/js/ui-modals" %>
 <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
+
+<!-- -->
+<%= javascript_include_tag "/assets/plugins/flot/jquery.flot" %>
+	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.pie" %>
+	<%= javascript_include_tag "/assets/plugins/flot/jquery.flot.resize.min" %>
+	<%#= javascript_include_tag "/assets/plugins/jquery.sparkline/jquery.sparkline" %>
+	<%= javascript_include_tag "/assets/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart" %>
+	<%= javascript_include_tag "/assets/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min" %>
+	<%= javascript_include_tag "/assets/js/scrutino" %>
+
+	<script>
+			//jQuery(document).on('page:change', function() {
+			//	Main.init();
+			//	Index.init();
+			//});
+	</script>
+<!-- -->
 <script>
-  jQuery(document).ready(function() {
+  //jQuery(document).ready(function() {
+  jQuery(document).on('page:change', function() {
     Main.init();
     UIModals.init();
     //Index.init();
     //$.stellar();
+    Index.init();
   });
 </script>
 </html>
