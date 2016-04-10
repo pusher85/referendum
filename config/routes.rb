@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  devise_for :utentis
   root to: "seggis#index"
 
   #resources :public
