@@ -1,4 +1,7 @@
 class SecondaController < ApplicationController
+
+  before_filter :authenticate_utenti!
+  
 	def new
 		@seggio = Seggi.find(params[:seggi_id])
     @titolo = "Inserimento Seconda rilevazione per il seggio #{@seggio.numero}"
@@ -12,7 +15,7 @@ class SecondaController < ApplicationController
 		@seconda = Seconda.new(seconda_params)
 		@seconda.seggi_id = @seggio.id
 		if @seconda.save
-			redirect_to root_path
+			redirect_to seggis_path
 		else
 			render 'new'
 		end
@@ -30,7 +33,7 @@ class SecondaController < ApplicationController
   	@seggio = Seggi.find(params[:seggi_id])
   	@seconda = Seconda.where(:seggi_id => @seggio).find(params[:id])
   	if @seconda.update(seconda_params)
-  		redirect_to root_path
+  		redirect_to seggis_path
   	else
   		render 'edit'
   	end
@@ -40,7 +43,7 @@ class SecondaController < ApplicationController
   	@seggio = Seggi.find(params[:seggi_id])
   	@seconda = Seconda.where(:seggi_id => @seggio).find(params[:id])
   	@seconda.destroy
-  	redirect_to root_path
+  	redirect_to seggis_path
   end
 
 

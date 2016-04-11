@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   
 
   devise_for :utentis
-  root to: "seggis#index"
+  #root to: "seggis#index"
+  root to: "public#index"
 
   #resources :public
   get 'public/corpo'

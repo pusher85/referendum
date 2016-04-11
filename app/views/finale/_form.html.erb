@@ -27,6 +27,16 @@
         <strong>Quadratura</strong>
         <i class="circle-icon circle-bricky" id="esito_quadratura">NO</i>
         </div>
+
+        <% if params[:action] == 'edit' %>
+        <div class="dropdown pull-right">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Azioni <span class="caret"></span></button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><%= link_to 'Elimina Scrutinio', seggi_finale_path, method: :delete,  data: { confirm: "Sicuro di voler eliminare lo scrutinio per questo seggio? Non sarà possibile tornare indietro" } %></li>
+          </ul>
+        </div>
+        <% end %>
+
       </li>
     </ul>
   </div>  

@@ -1,5 +1,7 @@
 class PrimaController < ApplicationController
 
+  before_filter :authenticate_utenti!
+
   
 	def new
 		@seggio = Seggi.find(params[:seggi_id])
@@ -15,7 +17,7 @@ class PrimaController < ApplicationController
 		@prima = Prima.new(prima_params)
 		@prima.seggi_id = @seggio.id
 		if @prima.save
-			redirect_to root_path
+			redirect_to seggis_path
 		else
 			render 'new'
 		end
@@ -34,7 +36,7 @@ class PrimaController < ApplicationController
   	@seggio = Seggi.find(params[:seggi_id])
   	@prima = Prima.where(:seggi_id => @seggio).find(params[:id])
   	if @prima.update(prima_params)
-  		redirect_to root_path
+  		redirect_to seggis_path
   	else
   		render 'edit'
   	end
@@ -44,7 +46,7 @@ class PrimaController < ApplicationController
   	@seggio = Seggi.find(params[:seggi_id])
   	@prima = Prima.where(:seggi_id => @seggio).find(params[:id])
   	@prima.destroy
-  	redirect_to root_path
+  	redirect_to seggis_path
   end
 
 

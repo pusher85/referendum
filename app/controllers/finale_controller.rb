@@ -1,4 +1,6 @@
 class FinaleController < ApplicationController
+
+  before_filter :authenticate_utenti!
 	
 
   def new
@@ -14,7 +16,7 @@ class FinaleController < ApplicationController
     @votanti = @seggio.terza.maschi + @seggio.terza.femmine
 		@finale.seggi_id = @seggio.id
 		if @finale.save
-			redirect_to root_path
+			redirect_to seggis_path
 		else
 			render 'new'
 		end
@@ -32,7 +34,7 @@ class FinaleController < ApplicationController
     @votanti = @seggio.terza.maschi + @seggio.terza.femmine
   	@finale = Finale.where(:seggi_id => @seggio).find(params[:id])
   	if @finale.update(finale_params)
-  		redirect_to root_path
+  		redirect_to seggis_path
   	else
   		render 'edit'
   	end
@@ -42,7 +44,7 @@ class FinaleController < ApplicationController
   	@seggio = Seggi.find(params[:seggi_id])
   	@finale = Finale.where(:seggi_id => @seggio).find(params[:id])
   	@finale.destroy
-  	redirect_to root_path
+  	redirect_to seggis_path
   end
 
 

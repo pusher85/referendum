@@ -9,10 +9,12 @@
 		<!-- end: MAIN MENU TOGGLER BUTTON -->
 		<!-- start: MAIN NAVIGATION MENU -->
 		<ul class="main-navigation-menu">
-			<li class="<%# if current_page?(:controller => '/welcome', :action => 'index') %> <%#= "active open" %> <%# end %>" >
-				<%= link_to '<i class="clip-home-3"></i><span class="title"> Stato Rilevazioni</span>'.html_safe, seggis_path %>
-			</li>
 
+			<% if utenti_signed_in? %>
+				<li class="<%# if current_page?(:controller => '/welcome', :action => 'index') %> <%#= "active open" %> <%# end %>" >
+					<%= link_to '<i class="clip-home-3"></i><span class="title"> Stato Rilevazioni</span>'.html_safe, seggis_path %>
+				</li>
+			<% end %>
 			
 
 			<%# if utenti_signed_in? && (current_utenti.operatore? || current_utenti.admin) %>
@@ -20,19 +22,19 @@
 					<%= link_to '<i class="clip-folder"></i><span class="title"> Public</span>'.html_safe, 'javascript:void(0)' %>
 					<ul class="sub-menu">
 						<li>
-							<%= link_to '<i class="clip-home-3"></i><span class="title"> Corpo Elettorale</span>'.html_safe, public_corpo_path %>
+							<%= link_to '<i class="clip-home-3"></i><span class="title"> Corpo Elettorale</span>'.html_safe, public_corpo_path, target: '_blank'%>
 						</li>
 						<li>
-							<%= link_to '<i class="clip-home-3"></i><span class="title"> Affluenza</span>'.html_safe, public_affluenza_path %>
+							<%= link_to '<i class="clip-home-3"></i><span class="title"> Affluenza</span>'.html_safe, public_affluenza_path, target: '_blank' %>
 						</li>
 					</ul>
 				</li>
 			<%# end %>
 
 			<%# if @sono_user %>
-				<li>
-					<%= link_to '<i class="clip-folder"></i><span class="title"> Vuoto</span>'.html_safe, '#' %>
-				</li>
+				<!--<li>
+					<%#= link_to '<i class="clip-folder"></i><span class="title"> Vuoto</span>'.html_safe, '#' %>
+				</li> -->
 			<%# end %>
 
 		</ul>

@@ -67,6 +67,19 @@
 
 	<% end %>
 
+	<div class="col-md-3">
+    <div class="dropdown pull-right">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Azioni <span class="caret"></span></button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      	<% if !@finale  %>
+        <li><%= link_to 'Elimina rilevazione', seggi_terza_path, method: :delete,  data: { confirm: "Sicuro di voler eliminare la rilevazione? Non sarà possibile tornare indietro" } %></li>
+        <% else %>
+        <li>Impossibile Eliminare</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
 	<% end %>
 
 </div>

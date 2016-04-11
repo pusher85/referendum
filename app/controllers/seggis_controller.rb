@@ -1,11 +1,14 @@
 class SeggisController < ApplicationController
+  
+  before_filter :authenticate_utenti!
+
   before_action :set_seggi, only: [:show, :edit, :update, :destroy]
   #before_action :quadra_seggi, only: [:show, :index]
 
   # GET /seggis
   # GET /seggis.json
   def index
-    @titolo = 'Stato delle rilevazioni per saggio'
+    @titolo = 'Stato delle rilevazioni per seggio'
     @seggis = Seggi.all.order(:numero).each
 
     #@seggi = Seggi.all
@@ -83,7 +86,7 @@ class SeggisController < ApplicationController
 
     respond_to do |format|
       if @seggi.save
-        format.html { redirect_to root_path, notice: 'Seggi was successfully created.' }
+        format.html { redirect_to seggis_path, notice: 'Seggio creato con successo.' }
         format.json { render :show, status: :created, location: @seggi }
       else
         format.html { render :new }
@@ -97,7 +100,7 @@ class SeggisController < ApplicationController
   def update
     respond_to do |format|
       if @seggi.update(seggi_params)
-        format.html { redirect_to @seggi, notice: 'Seggi was successfully updated.' }
+        format.html { redirect_to @seggi, notice: 'Seggio modificato con successo.' }
         format.json { render :show, status: :ok, location: @seggi }
       else
         format.html { render :edit }
@@ -111,7 +114,7 @@ class SeggisController < ApplicationController
   def destroy
     @seggi.destroy
     respond_to do |format|
-      format.html { redirect_to seggis_url, notice: 'Seggi was successfully destroyed.' }
+      format.html { redirect_to seggis_url, notice: 'Seggio eliminato con successo.' }
       format.json { head :no_content }
     end
   end

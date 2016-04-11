@@ -1,4 +1,7 @@
 class RilevazionisController < ApplicationController
+
+  before_filter :authenticate_utenti!
+  
   #before_action :set_rilevazioni, only: [:show, :edit, :update, :destroy]
 
   def index
