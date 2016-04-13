@@ -1,0 +1,100 @@
+<div class="row">
+	<div class="col-md-12">
+		<h2 class="center">Prospetto diviso per sezione</h2>
+	</div>
+</div>
+
+<%= render 'intestazione' %>
+
+<br>
+
+<% @seggi.each do |seggi| %>
+	
+	<% 
+	@iscritti = seggi.maschi + seggi.femmine
+
+	if seggi.prima
+		@votanti1 = seggi.prima.maschi + seggi.prima.femmine
+		@perc1 = number_to_percentage((@votanti1 * 100 / @iscritti.to_f), precision: 2)
+	end
+
+	if seggi.seconda
+		@votanti2 = seggi.seconda.maschi + seggi.seconda.femmine
+		@perc2 = number_to_percentage((@votanti2 * 100 / @iscritti.to_f), precision: 2)
+	end
+
+	if seggi.terza
+		@votanti3 = seggi.terza.maschi + seggi.terza.femmine
+		@perc3 = number_to_percentage((@votanti3 * 100 / @iscritti.to_f), precision: 2)
+	end
+
+	if seggi.finale
+		@votanti = seggi.finale.si + seggi.finale.no
+		@percsi = number_to_percentage((seggi.finale.si * 100 / @votanti.to_f), precision: 2)
+		@percno = number_to_percentage((seggi.finale.no * 100 / @votanti.to_f), precision: 2)
+	end
+	
+
+
+
+	
+
+	%>
+	<div class="row">
+		<div class="col-md-12">
+			<blockquote>
+				<div class="row">
+
+					<div class="col-md-2 col-sd-2">
+						<div class="row"><div class="col-md-12"><%= seggi.numero %> - <%= seggi.descrizione %></div></div>
+						<!-- <div class="row"><div class="col-md-12"></div></div> -->
+					</div>
+
+					<div class="col-md-2 col-sd-2">
+						<div class="row"><div class="col-md-12">I Rilevazione</div></div>
+						<% if seggi.prima %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: <%= seggi.prima.maschi %> </span>|<span class="text-danger"> F: <%= seggi.prima.femmine %></span></div></div>
+							<div class="row"><div class="col-md-12"><%= @perc1 %></div></div>
+						<% else %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: --- </span>|<span class="text-danger"> F: ---</span></div></div>
+						<% end %>
+					</div>
+
+					<div class="col-md-2 col-sd-2">
+						<div class="row"><div class="col-md-12">II Rilevazione</div></div>
+						<% if seggi.seconda %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: <%= seggi.seconda.maschi %> </span>|<span class="text-danger"> F: <%= seggi.seconda.femmine %></span></div></div>
+							<div class="row"><div class="col-md-12"><%= @perc2 %></div></div>
+						<% else %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: --- </span>|<span class="text-danger"> F: ---</span></div></div>
+						<% end %>
+					</div>
+
+					<div class="col-md-2 col-sd-2">
+						<div class="row"><div class="col-md-12">III Rilevazione</div></div>
+						<% if seggi.terza %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: <%= seggi.terza.maschi %> </span>|<span class="text-danger"> F: <%= seggi.terza.femmine %></span></div></div>
+							<div class="row"><div class="col-md-12"><%= @perc3 %></div></div>
+						<% else %>
+							<div class="row"><div class="col-md-12"><span class="text-primary">M: --- </span>|<span class="text-danger"> F: ---</span></div></div>
+						<% end %>
+					</div>						
+
+
+					<div class="col-md-4 col-sd-4">
+						<div class="row"><div class="col-md-12">Scrutino Finale</div></div>
+						<% if seggi.finale %>
+							<div class="row"><div class="col-md-12"><span class="text-success">SI: <%= seggi.finale.si %> </span>|<span class="text-info"> NO: <%= seggi.finale.no %> </span>| B: <%= seggi.finale.bianche %> | N: <%= seggi.finale.nulle %> | C: <%= seggi.finale.contestate %></div></div>
+							<div class="row"><div class="col-md-12"><span class="text-success">SI: <%= @percsi %> </span>|<span class="text-info"> NO: <%= @percno %> </span></div></div>
+						<% else %>
+							<div class="row"><div class="col-md-12"><span class="text-success">SI: --- </span>|<span class="text-info"> NO: --- </span>| B: --- | N: --- | C: ---</div></div>
+						<% end %>
+					</div>
+
+					
+				</div>
+			</blockquote>
+		</div>
+	</div>
+
+<% end %>

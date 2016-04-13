@@ -14,7 +14,7 @@ class TerzaController < ApplicationController
 		@terza = Terza.new(terza_params)
 		@terza.seggi_id = @seggio.id
 		if @terza.save
-			redirect_to root_path
+			redirect_to seggis_path
 		else
 			render 'new'
 		end

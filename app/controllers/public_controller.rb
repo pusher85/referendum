@@ -50,6 +50,15 @@ class PublicController < ApplicationController
 
 	end
 
+
+	def dettaglio
+		@titolo ="Dettaglio sezione per sezione"
+		@seggi = Seggi.all.order(:numero).each
+
+	end
+
+
+
 	def scrutini
 
 	end

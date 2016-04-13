@@ -20,17 +20,17 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="<%#= 'active' if current_page?(welcome_prelogin_path) %>">
+					<li class="<%= 'active' if (params[:controller] == 'public' && params[:action] == 'corpo') %>">
 						<%= link_to "Corpo Elettorale", public_corpo_path %>
 					</li>
 					
-					<li class="<%= 'active' if (params[:controller] == 'welcome' && params[:action] == 'justone') %>">
-						<%= link_to 'Dati Affluenza', public_affluenza_path %>
+					<li class="<%= 'active' if (params[:controller] == 'public' && params[:action] == 'affluenza') %>">
+						<%= link_to 'Dati Globali', public_affluenza_path %>
 					</li>
 
-					<!--<li>
-						<%= link_to 'Login', '#' %>
-					</li>-->
+					<li class="<%= 'active' if (params[:controller] == 'public' && params[:action] == 'dettaglio') %>">
+						<%= link_to 'Dettaglio Sezioni', public_dettaglio_path %>
+					</li>
 
 				</ul>
 			</div>

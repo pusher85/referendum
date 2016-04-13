@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'public/affluenza'
   get 'public/scrutini'
   get 'public/index', :path => "public"
+  get 'public/dettaglio'
 
 
   
