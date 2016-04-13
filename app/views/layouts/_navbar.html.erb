@@ -16,7 +16,7 @@
 				</li>
 			<% end %>
 			
-
+			<!-- 
 			<%# if utenti_signed_in? && (current_utenti.operatore? || current_utenti.admin) %>
 				<li class="<%# if current_page?(:controller => '/welcome', :action => 'assegnati') %> <%#= "active open" %> <%# end %>">
 					<%= link_to '<i class="clip-folder"></i><span class="title"> Public</span>'.html_safe, 'javascript:void(0)' %>
@@ -28,6 +28,12 @@
 							<%= link_to '<i class="clip-home-3"></i><span class="title"> Affluenza</span>'.html_safe, public_affluenza_path, target: '_blank' %>
 						</li>
 					</ul>
+				</li>
+				-->
+
+				
+				<li class="<%# if current_page?(:controller => '/welcome', :action => 'index') %> <%#= "active open" %> <%# end %>" >
+					<%= link_to '<i class="clip-home-3"></i><span class="title"> Front-End</span>'.html_safe, root_path, target: '_blank'%>
 				</li>
 			<%# end %>
 

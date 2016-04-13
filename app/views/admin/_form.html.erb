@@ -1,0 +1,38 @@
+<% if local_assigns.has_key? :url %>
+
+<%= form_for :utentis, url: url, method: method, class: "col s12" do |f| %>  
+
+<div class="row">
+  <div class="col-md-6">
+    <%= f.label :email %>
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+      <%= f.text_field :email, :length=>"254", class: "form-control", :value => @utenti.email if @utenti %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.label :password %>
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+
+
+ <div class="row">
+    <div class="col-md-3">
+       <div class="form-group">
+        <%= link_to 'Indietro', admin_index_path, class: 'btn btn-danger' %>
+        <%= f.submit 'Salva', :class => 'btn btn-success' %>
+        <%= link_to 'Elimina', admin_path(@utenti), class: 'btn btn-purple', method: :delete, data: { confirm: 'Sicuro di voler eliminare la login?' } if method == 'patch' %> 
+       </div>
+    </div>
+  </div>
+
+
+  <% end %>
+
+  <% end %>

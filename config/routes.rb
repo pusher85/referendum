@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
 
-  devise_for :utentis
+  devise_for :utentis, :path_prefix => 'auth'
   #root to: "seggis#index"
   root to: "public#index"
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'public/index', :path => "public"
   get 'public/dettaglio'
 
-
+  resources :admin
   
   resources :seggis do
     #resources :rilevazionis
