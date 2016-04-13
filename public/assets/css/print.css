@@ -40,3 +40,7 @@ a[href]:after {
 .page-header {
 	display: inline;
 }
+
+.no-stampa {
+	display: none;
+}

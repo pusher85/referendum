@@ -113,11 +113,11 @@
                   <td class="danger"> <%= @perc_terza if seggi.terza %></td>
 
                   <td>
-                    <%= link_to '<i class="fa fa-cogs"></i> Apri Seggio'.html_safe, seggi, :class => 'btn btn-xs btn-purple' %>
-                    <%= '<span class="label label-danger">ATTENZIONE !</span>'.html_safe if !@quadra_ok %>
+                    <%= link_to '<i class="fa fa-cogs"></i> Apri Seggio'.html_safe, seggi, :class => 'btn btn-xs btn-purple no-stampa' %>
+                    <%= '<span class="label label-danger no-stampa">ATTENZIONE !</span>'.html_safe if !@quadra_ok %>
                     
 
-                    <%= '<i class="clip-checkmark-2"></i>'.html_safe if @quadra_finale %></td>
+                    <%= '<i class="clip-checkmark-2 no-stampa"></i>'.html_safe if @quadra_finale %></td>
                   <!-- <td><%= link_to 'Edit Seggio', edit_seggi_path(seggi) %></td> -->
                   <!-- <td><%= link_to 'Destroy', seggi, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
                 </tr>
